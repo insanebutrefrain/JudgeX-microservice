@@ -27,23 +27,4 @@ public class InitRabbitMq {
             log.error("消息队列创建失败");
         }
     }
-
-    public static void main(String[] args) {
-        try {
-            ConnectionFactory factory = new ConnectionFactory();
-            factory.setHost("localhost");
-            Connection connection = factory.newConnection();
-            Channel channel = connection.createChannel();
-            String EXCHANGE_NAME = "code_exchange";
-            channel.exchangeDeclare(EXCHANGE_NAME, "direct");
-
-            // 创建队列，随机分配一个队列名称
-            String queueName = "code_queue";
-            channel.queueDeclare(queueName, true, false, false, null);
-            channel.queueBind(queueName, EXCHANGE_NAME, "my_routingKey");
-            log.info("消息队列创建成功");
-        } catch (Exception e) {
-            log.error("消息队列创建失败");
-        }
-    }
 }

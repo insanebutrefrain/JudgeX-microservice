@@ -18,6 +18,7 @@ import insane.model.enums.QuestionSubmitLanguageEnum;
 import insane.model.enums.QuestionSubmitStatusEnum;
 import insane.model.vo.QuestionSubmitVO;
 import insane.questionservice.mapper.QuestionSubmitMapper;
+import insane.questionservice.rabbitmq.MyMessageProducer;
 import insane.questionservice.service.QuestionService;
 import insane.questionservice.service.QuestionSubmitService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -41,6 +42,9 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
     @Resource
     @Lazy
     private JudgeFeignClient judgeFeignClient;
+
+    @Resource
+    private MyMessageProducer myMessageProducer;
 
     /**
      提交题目
@@ -82,7 +86,8 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         }
         Long questionSubmitId = questionSubmit.getId();
         // 调用判题服务
-        CompletableFuture.runAsync(() -> judgeFeignClient.doJudge(questionSubmitId));
+//        CompletableFuture.runAsync(() -> judgeFeignClient.doJudge(questionSubmitId));
+        myMessageProducer.sendMessage("code_exchange", "my_routingKey", questionSubmitId);
         return questionSubmitId;
     }
 
