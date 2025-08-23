@@ -1,0 +1,54 @@
+
+/*
+// 关闭所有严格检查,
+"strict": false,
+// 允许隐式 any 类型,
+"noImplicitAny": false,
+// 关闭 null/undefined 检查
+"strictNullChecks": false,
+// 关闭函数参数类型严格校验
+"strictFunctionTypes": false,
+// 跳过库文件类型检查（如第三方库）
+"skipLibCheck": true,
+// 混合js
+"allowJs": true,
+*/
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "useDefineForClassFields": true,
+    "sourceMap": true,
+    "baseUrl": ".",
+    "types": [
+      "webpack-env"
+    ],
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

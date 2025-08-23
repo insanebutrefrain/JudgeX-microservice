@@ -1,0 +1,39 @@
+server:
+  port: 8101
+knife4j:
+  gateway:
+    enabled: true
+    strategy: discover
+    discover:
+      enabled: true
+      version : swagger2
+      excluded-services:
+        - gateway
+spring:
+  application:
+    name: gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: service-user
+          uri: lb://service-user
+          predicates:
+            - Path=/api/user/**
+        - id: service-question
+          uri: lb://service-question
+          predicates:
+            - Path=/api/question/**
+        - id: service-file
+          uri: lb://service-file
+          predicates:
+            - Path=/api/file/**
+        - id: service-judge
+          uri: lb://service-judge
+          predicates:
+            - Path=/api/judge/**
+

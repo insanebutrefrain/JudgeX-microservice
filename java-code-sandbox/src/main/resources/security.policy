@@ -1,0 +1,46 @@
+grant {
+    // 1. 禁止所有文件操作
+    permission java.io.FilePermission "<<ALL FILES>>", "read,write,delete,execute", "deny";
+
+    // 2. 禁止所有网络访问
+    permission java.net.SocketPermission "*", "accept,connect,listen,resolve", "deny";
+    permission java.net.NetPermission "*", "deny";
+
+    // 3. 禁止所有线程操作
+    permission java.lang.RuntimePermission "modifyThread", "deny";
+    permission java.lang.RuntimePermission "modifyThreadGroup", "deny";
+    permission java.lang.RuntimePermission "stopThread", "deny";
+
+    // 4. 禁止反射相关操作
+    permission java.lang.RuntimePermission "accessDeclaredMembers", "deny";
+    permission java.lang.reflect.ReflectPermission "suppressAccessChecks", "deny";
+
+    // 5. 禁止JVM和系统信息访问
+    permission java.lang.RuntimePermission "getenv.*", "deny";
+    permission java.lang.RuntimePermission "getProtectionDomain", "deny";
+    permission java.util.PropertyPermission "*", "read", "deny";
+
+    // 6. 禁止序列化/反序列化
+    permission java.io.SerializablePermission "*", "deny";
+
+    // 7. 禁止本地代码执行
+    permission java.lang.RuntimePermission "loadLibrary.*", "deny";
+    permission java.lang.RuntimePermission "accessClassInPackage.sun.*", "deny";
+
+    // 8. 禁止进程操作
+    permission java.lang.RuntimePermission "exec.*", "deny";
+
+    // 9. 禁止安全管理器修改
+    permission java.lang.RuntimePermission "setSecurityManager", "deny";
+
+    // 10. 禁止类加载器操作
+    permission java.lang.RuntimePermission "createClassLoader", "deny";
+    permission java.lang.RuntimePermission "getClassLoader", "deny";
+
+    // 允许标准输出（算法题通常需要输出结果）
+    permission java.lang.RuntimePermission "accessSystemModules";
+    permission java.io.FilePermission "<<Standard Output>>", "write";
+
+    // 允许基本数学运算
+    permission java.lang.RuntimePermission "accessClassInPackage.java.lang";
+};

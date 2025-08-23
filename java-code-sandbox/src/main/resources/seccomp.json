@@ -1,0 +1,46 @@
+{
+  "defaultAction": "SCMP_ACT_ALLOW",
+  "architectures": [
+    "SCMP_ARCH_X86_64",
+    "SCMP_ARCH_X86",
+    "SCMP_ARCH_X32"
+  ],
+  "syscalls": [
+    {
+      "names": [
+        "unlink",
+        "unlinkat",
+        "renameat2",
+        "truncate",
+        "rmdir",
+        "chmod",
+        "fchmod",
+        "fchmodat",
+        "chown",
+        "fchown",
+        "fchownat",
+        "lchown",
+        "mount",
+        "umount",
+        "umount2",
+        "swapon",
+        "swapoff",
+        "pivot_root",
+        "reboot",
+        "syslog",
+        "iopl",
+        "ioperm",
+        "sethostname",
+        "setdomainname",
+        "init_module",
+        "finit_module",
+        "delete_module",
+        
+        "iptables",
+        "nfsservctl",
+        "query_module"
+      ],
+      "action": "SCMP_ACT_ERRNO"
+    }
+  ]
+}
