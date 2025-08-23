@@ -12,11 +12,13 @@
     <name>service-judge</name>
     <description>service-judge</description>
     <dependencies>
+        <!-- rabbitmq -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
 
+        <!-- knife4j -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
