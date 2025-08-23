@@ -18,7 +18,7 @@ public class RemoteCodeSandbox implements CodeSandbox {
 
     @Override
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
-        String url = "http://192.168.146.128:8082/execute";
+        String url = "http://localhost:8100/execute";
         String json = JSONUtil.toJsonStr(executeCodeRequest);
 
         HttpResponse execute = HttpUtil.createPost(url).body(json).execute();

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>insane</groupId>
-        <artifactId>JudgeX_back</artifactId>
+        <artifactId>JudgeX-back</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>service-client</artifactId>
