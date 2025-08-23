@@ -26,9 +26,6 @@
         <module name="java-code-sandbox" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="JudgeX-back" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
