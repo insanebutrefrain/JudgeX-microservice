@@ -10,15 +10,16 @@ import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientImpl;
 import com.github.dockerjava.core.command.ExecStartResultCallback;
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient;
-import insane.model.ExecuteCodeRequest;
 import insane.constant.DockerConstant;
 import insane.enums.ExecuteStatus;
+import insane.model.ExecuteCodeRequest;
 import insane.model.ExecuteCodeResponse;
-import insane.utils.CheckEnvironment;
 import insane.model.ExecuteMessage;
+import insane.utils.CheckEnvironment;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.ByteArrayInputStream;
@@ -31,12 +32,13 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
+
 /**
  * 基于Docker的Java代码沙箱实现
  * 通过预创建容器池和安全配置来运行用户代码
  */
-@Component
 @Slf4j
+//@Service
 public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements CodeSandbox {
 
     // Docker镜像名称，默认使用openjdk:8-jre-alpine
@@ -117,6 +119,7 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 创建并启动一个新的容器
+     *
      * @return 容器ID，创建失败返回null
      */
     private String createAndStartContainer() {
@@ -167,8 +170,9 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 运行编译后的代码文件
+     *
      * @param userCodeFile 用户代码文件
-     * @param inputList 输入测试用例列表
+     * @param inputList    输入测试用例列表
      * @return 执行消息列表
      */
     @Override
@@ -202,7 +206,8 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 并行执行多个测试用例
-     * @param inputList 输入测试用例列表
+     *
+     * @param inputList   输入测试用例列表
      * @param containerId 容器ID
      * @return 执行结果列表
      */
@@ -245,9 +250,10 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 在容器中执行单个测试用例
-     * @param input 输入数据
+     *
+     * @param input        输入数据
      * @param dockerClient Docker客户端
-     * @param containerId 容器ID
+     * @param containerId  容器ID
      * @return 执行消息
      */
     private static ExecuteMessage getExecuteMessage(String input, DockerClient dockerClient, String containerId) {
@@ -361,8 +367,9 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 拉取Docker镜像
+     *
      * @param dockerClient Docker客户端
-     * @param image 镜像名称
+     * @param image        镜像名称
      */
     private void pullImage(DockerClient dockerClient, String image) {
         if (!firstInitImage) return; // 如果不是首次初始化则跳过
@@ -427,6 +434,7 @@ public class JavaDockerCodeSandbox extends JavaCodeSandboxTemplate implements Co
 
     /**
      * 停止并删除指定容器
+     *
      * @param containerId 容器ID
      */
     private void stopAndRemoveContainer(String containerId) {

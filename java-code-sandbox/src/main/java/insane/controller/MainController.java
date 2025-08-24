@@ -2,14 +2,15 @@ package insane.controller;
 
 import insane.model.ExecuteCodeRequest;
 import insane.model.ExecuteCodeResponse;
-import insane.service.JavaDockerCodeSandbox;
 import insane.service.JavaNativeCodeSandbox;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 @RestController
 public class MainController {
@@ -20,8 +21,8 @@ public class MainController {
     @Resource
     private JavaNativeCodeSandbox javaNativeCodeSandBox;
 
-    @Resource
-    private JavaDockerCodeSandbox javaDockerCodeSandbox;
+//    @Resource
+//    private JavaDockerCodeSandbox javaDockerCodeSandbox;
 
     /**
      * 执行代码

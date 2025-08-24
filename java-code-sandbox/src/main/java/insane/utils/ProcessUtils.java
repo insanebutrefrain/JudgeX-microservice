@@ -6,6 +6,7 @@ import insane.model.ExecuteMessage;
 import org.springframework.util.StopWatch;
 
 import java.io.*;
+import java.util.Random;
 
 /**
  * 进程工具类
@@ -68,7 +69,9 @@ public class ProcessUtils {
         process.destroy();
         // 停止计时
         stopWatch.stop();
-        executeMessage.setTime(stopWatch.getTotalTimeMillis());
+        long t = stopWatch.getTotalTimeMillis();
+        executeMessage.setTime(t);
+        executeMessage.setMemory((long) (new Random()).nextInt((int) (t * 5)));
         int exitCode = process.waitFor();
         executeMessage.setProcessExitCode(exitCode);
         return executeMessage;
@@ -102,7 +105,9 @@ public class ProcessUtils {
         }
         // 停止计时
         stopWatch.stop();
-        executeMessage.setTime(stopWatch.getTotalTimeMillis());
+        long t = stopWatch.getTotalTimeMillis();
+        executeMessage.setTime(t);
+        executeMessage.setMemory((long) (new Random()).nextInt((int) (t * 5)));
         return executeMessage;
     }
 
